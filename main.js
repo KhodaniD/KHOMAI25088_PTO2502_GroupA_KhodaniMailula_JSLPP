@@ -39,3 +39,31 @@ function applyTheme(theme) {
     }
   }
 }
+
+/**
+ * Loads the saved theme from local storage or defaults to the user's system preference.
+ * @returns {void}
+ */
+function loadInitialTheme() {
+  const savedTheme = localStorage.getItem('theme');
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(savedTheme || (systemPrefersDark ? 'dark' : 'light'));
+}
+
+/**
+ * Toggles the visibility of the sidebar on desktop.
+ * @returns {void}
+ */
+function toggleSidebar() {
+  sidebar.classList.toggle('hidden');
+  mainContent.classList.toggle('sidebar-hidden');
+}
+
+/**
+ * Toggles the visibility of the mobile menu.
+ * @returns {void}
+ */
+function toggleMobileMenu() {
+  mobileMenuModal.classList.toggle('hidden');
+}
+
