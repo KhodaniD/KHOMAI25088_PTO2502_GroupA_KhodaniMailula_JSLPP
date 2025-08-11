@@ -55,3 +55,39 @@ function compareTasksByPriority(a, b) {
   return (priorityOrder[b.priority] || 0) - (priorityOrder[a.priority] || 0);
 }
 
+/**
+ * Creates and returns a task card element.
+ * @param {object} task - The task object.
+ * @returns {HTMLElement} The task card element.
+ */
+function createTaskElement(task) {
+  const taskCard = document.createElement('div');
+  taskCard.className = 'task-card';
+  taskCard.dataset.taskId = task.id;
+  taskCard.innerHTML = `
+    <div class="task-header-container">
+      <h3 class="task-title">${task.title}</h3>
+      <span class="priority-dot priority-${task.priority || 'low'}"></span>
+    </div>
+  `;
+  taskCard.addEventListener('click', () => openModal(task));
+  return taskCard;
+}
+
+/**
+ * Updates the task count displays for each column.
+ */
+function updateTaskCountDisplays() {
+  const counts = state.reduce((acc, task) => {
+    acc[task.status] = (acc[task.status] || 0) + 1;
+    return acc;
+  }, { todo: 0, doing: 0, done: 0 });
+
+  for (const status in counts) {
+    const countElement = document.querySelector(`.column-div[data-status="${status}"] .column-count`);
+    if (countElement) {
+      countElement.textContent = `(${counts[status]})`;
+    }
+  }
+}
+
