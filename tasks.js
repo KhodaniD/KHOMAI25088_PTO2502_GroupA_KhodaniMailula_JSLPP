@@ -148,3 +148,36 @@ export function updateTask(id, updates) {
   }
 }
 
+/**
+ * Deletes a task from the state and re-renders.
+ * @param {string} id - The ID of the task to delete.
+ */
+export function deleteTask(id) {
+  state = state.filter(task => task.id !== id);
+  saveTasksToStorage(state);
+  renderTasks();
+}
+
+/**
+ * Initializes the application by loading tasks from local storage or the API.
+ */
+export async function initializeTasks() {
+  setBoardView('loading');
+  let tasks = loadTasksFromStorage();
+
+  if (tasks.length === 0) {
+    tasks = await fetchTasksFromAPI();
+  }
+
+  if (tasks.length === 0) {
+    setBoardView('empty');
+  } else {
+    state = tasks.map(task => ({
+      ...task,
+      priority: task.priority ? task.priority.toLowerCase() : 'medium'
+    }));
+    saveTasksToStorage(state);
+    renderTasks();
+  }
+}
+
