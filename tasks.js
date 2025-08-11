@@ -122,4 +122,29 @@ export function renderTasks() {
   }
 }
 
+/**
+ * Adds a new task to the state and re-renders.
+ * @param {object} taskData - The data for the new task.
+ */
+export function addNewTask(taskData) {
+  const newId = `task-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  const newTask = { ...taskData, id: newId };
+  state.push(newTask);
+  saveTasksToStorage(state);
+  renderTasks();
+}
+
+/**
+ * Updates an existing task in the state and re-renders.
+ * @param {string} id - The ID of the task to update.
+ * @param {object} updates - The new data for the task.
+ */
+export function updateTask(id, updates) {
+  const taskIndex = state.findIndex(task => task.id === id);
+  if (taskIndex > -1) {
+    state[taskIndex] = { ...state[taskIndex], ...updates };
+    saveTasksToStorage(state);
+    renderTasks();
+  }
+}
 
