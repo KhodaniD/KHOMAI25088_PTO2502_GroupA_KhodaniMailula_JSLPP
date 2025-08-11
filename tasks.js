@@ -29,3 +29,29 @@ function setBoardView(view) {
   });
 }
 
+/**
+ * Fetches tasks from the API.
+ * @returns {Promise<Array>} A promise that resolves to an array of tasks.
+ */
+async function fetchTasksFromAPI() {
+  try {
+    const response = await fetch(API_URL);
+    if (!response.ok) throw new Error(`API Error: ${response.status}`);
+    return await response.json();
+  } catch (error) {
+    console.error("Failed to fetch tasks from API:", error);
+    return [];
+  }
+}
+
+/**
+ * Compares two tasks by priority for sorting.
+ * @param {object} a - The first task.
+ * @param {object} b - The second task.
+ * @returns {number} The sort order value.
+ */
+function compareTasksByPriority(a, b) {
+  const priorityOrder = { high: 3, medium: 2, low: 1 };
+  return (priorityOrder[b.priority] || 0) - (priorityOrder[a.priority] || 0);
+}
+
