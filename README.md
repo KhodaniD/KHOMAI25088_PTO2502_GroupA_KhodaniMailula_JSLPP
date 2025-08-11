@@ -8,9 +8,9 @@
 
 ---
 
-## Project Overview
+## 💡 Project Overview
 
-This is a fully functional, responsive Kanban board web application designed to help users efficiently manage their workflow. The application dynamically organizes tasks into "TODO," "DOING," and "DONE" columns, providing a seamless and intuitive user experience. It's a complete, professional-grade portfolio piece that showcases a range of modern web development skills.
+This project is a fully functional, responsive Kanban board web application designed to help users visualize and manage their workflow. It features a responsive layout that gracefully adapts to various screen sizes, organizing tasks into "TODO," "DOING," and "DONE" columns. Building upon a static visual base, this version introduces a robust **JavaScript-driven system for dynamic task display and interactive management**. Users can **add, view, modify, and delete tasks** via a dedicated modal-based interface. All task data **persists in local storage**, ensuring your progress is saved even if you close the browser. This project showcases advanced DOM manipulation, event handling, and a clean, modular JavaScript architecture for a professional and scalable implementation.
 
 ---
 
@@ -21,96 +21,95 @@ This is a fully functional, responsive Kanban board web application designed to 
 
 ---
 
-
-## Key Features
+## 🌟 Key Features
 
 ### Core Functionality
-* **Fully Responsive Design:** Adapts seamlessly to all screen sizes, from desktop to mobile, ensuring a great user experience on any device.
-* **Persistent Data:** All tasks are saved to and loaded from the browser's **Local Storage**, ensuring your progress is always saved, even if you close the application.
-* **Dynamic Task Rendering:** Tasks are generated and managed dynamically using JavaScript, not hard-coded HTML. This ensures a clean, maintainable, and scalable codebase.
-* **Task Priority:** A key feature for visual organization. Each task card includes a priority dot, making it easy to quickly identify the importance of a task at a glance.
-
+* **Persistent Data:** All tasks are automatically saved to and loaded from the browser's **Local Storage**, ensuring data is never lost.
+* **Dynamic Task Rendering:** Tasks are dynamically generated from JavaScript data, not hard-coded HTML, and are automatically displayed in their correct columns with real-time updates to task counts.
+* **Interactive Modal-Based Task Management:**
+    * **"Add New Task" Modal:** A dedicated button opens a modal for creating new tasks with a title, description, and status.
+    * **"Edit Task" Modal:** Clicking any task card opens a modal pre-filled with the task’s details for easy modification.
+    * **Delete Task:** An option to delete tasks is available in the edit modal, with a confirmation prompt.
+    * **Modal Backdrop Effect:** A semi-transparent backdrop focuses user attention on the modal content.
+* **Task Priority:** Each task card includes a priority dot, visually indicating the importance of a task at a glance.
 
 ### User Interface & Navigation
-* **Themed Styling:** The application features a professional light and **dark mode theme**, which can be easily toggled by the user. This functionality is powered by **CSS Variables**, which allows for robust and maintainable styling and makes it simple to customize the color palette.
-* **Desktop Sidebar:** On larger screens, a dedicated sidebar provides clear navigation and theme-toggling options.
-* **Mobile Menu Modal:** For smaller screens, a compact, header-based menu provides a clean navigation experience, overlaying the main content to avoid clutter.
-* **Custom Form Validation:** Provides immediate, user-friendly feedback for required fields, guiding users to complete forms correctly.
+* **Fully Responsive Design:** Adapts seamlessly to all screen sizes, from desktop to mobile.
+* **Light & Dark Mode:** The application features an elegant light and dark theme that can be toggled by the user, powered by **CSS Variables** for easy color management.
+* **Desktop Sidebar:** A persistent navigation sidebar on larger screens for board selection.
+* **Mobile-Optimized Header:** A compact header designed for mobile devices. Tapping the header toggles the visibility of the mobile menu modal, providing a clean navigation experience.
+* **Custom Form Validation:** Implemented for key input fields to provide immediate user feedback and guide the user to fill out required fields.
+* **Clear Close Button:** A prominent red 'X' button is correctly positioned in the top-right corner of modals for easy closing.
 
 ---
 
-## Technologies Used
+## 🛠️ Technologies Used
 
-* **HTML5:** Provides the semantic and structural foundation of the application.
-* **CSS3:** Manages all styling, including a comprehensive responsive design. It utilizes **CSS Variables** for streamlined theme management and **Flexbox** for flexible, dynamic layouts.
-* **JavaScript (ES6+):** Powers all dynamic behavior and logic. The codebase follows a **modular architecture**, with files separated by responsibility (`main.js`, `tasks.js`, `modal.js`, `storage.js`) for better organization and maintainability. It also features advanced **DOM manipulation**, comprehensive **event handling**, and the use of the **Web Storage API** for data persistence.
-* **Google Fonts:** Uses 'Plus Jakarta Sans' for a consistent, modern, and readable typography.
-
----
-
-## Setup Instructions
-
-To run this project locally, follow these steps:
-
-1.  **Clone the repository:**
-    ```bash
-    git clone: https://github.com/KhodaniD/KHOMAI25088_PTO2502_GroupA_KhodaniMailula_JSLPP
-    ```
-
-2.  **Navigate to the project directory:**
-    ```bash
-    cd KHOMAI25088_PTO2502_GroupA_KhodaniMailula_JSLPP # Replace with your actual project folder name if different
-    ```
-
-3.  **Open `index.html`:**
-    Locate the `index.html` file in the project's root directory. Double-click it or drag it into your web browser to open the application.
-
+* **HTML5:** Provides the structural backbone with semantic elements and placeholders for dynamic content.
+* **CSS3:** Handles all styling and comprehensive responsive design, utilizing **CSS Variables** for themes, **Flexbox** for flexible layouts, and **CSS Grid** for arranging the main Kanban columns.
+* **JavaScript (ES6+):** Powers all dynamic behavior with a **modular architecture**, advanced **DOM manipulation**, comprehensive **event handling**, and the **Web Storage API**.
+    * **Array Manipulation:** Fundamental for efficiently storing, adding, updating, and filtering task objects in memory.
+    * **JSDoc Comments:** Every major function and module is documented with JSDoc comments, ensuring self-documented and easily understandable code.
+* **Google Fonts:** Uses 'Plus Jakarta Sans' for consistent and modern typography.
 
 ---
 
-## Working Usage Examples
-
-### Desktop View
-
-* Open `index.html` in any modern desktop browser. The **sidebar** and all Kanban columns will be fully visible.
-* Click **"+ Add New Task"** to create a new task.
-* Click on any existing task card to **edit or delete** it.
-* Use the **theme toggle** in the sidebar to switch between light and dark mode.
-
-### Mobile View
-
-* Open `index.html` on a mobile device or use your browser's developer tools to simulate a mobile viewport.
-* Tap the **Kanban logo in the header** to toggle the mobile menu.
-* The menu will appear as a modal, and you can use the red 'X' to close it.
-* The Kanban columns will automatically stack vertically for easy scrolling.
-* The modals for adding and editing tasks are fully responsive and touch-friendly.
-
----
-
-## Interaction Instructions
+## 📋 Interaction Instructions
 
 This project provides interactive task management directly via the user interface:
 
 ### Adding a New Task
-1.  Click the **"+ Add New Task"** button located in the top right of the header.
-2.  A modal will appear. Enter the task's title (required) and description in the provided input fields.
-3.  Select the desired status ("todo", "doing", or "done") from the dropdown.
-4.  Click the **"Create Task"** button. If the title is empty, a validation message will appear. Otherwise, the new task will instantly appear on the Kanban board in the chosen column.
+1.  Click the **"+ Add New Task"** button in the header.
+2.  Fill in the required title and optional description, then select a status.
+3.  Click **"Create Task"** to add it to the board.
 
 ### Editing an Existing Task
-1.  Click on any task card displayed on the Kanban board.
-2.  An "Edit Task" modal will open, pre-filled with the task's current title, description, and status.
-3.  Modify any of the details as needed.
-4.  Change the task's status using the dropdown if you wish to move it to another column.
-5.  Click the **"Save Changes"** button. If the title is empty, a validation message will appear. Otherwise, the task will update on the board, moving to a new column if its status was changed.
+1.  Click on any task card to open the "Edit Task" modal.
+2.  Modify the title, description, or status as needed.
+3.  Click **"Save Changes"** to update the task on the board.
 
 ### Deleting a Task
-1.  Click on the task card you wish to delete to open the "Edit Task" modal.
-2.  Inside the modal, click the **"Delete Task"** button.
-3.  The task will be immediately removed from the Kanban board after a confirmation prompt.
+1.  Open the "Edit Task" modal by clicking on a task card.
+2.  Click the **"Delete Task"** button inside the modal and confirm.
 
-### Closing the Modal
-* To close any open modal without saving changes, click the **'X' icon** in the top right corner of the modal.
+### Closing Modals
+* Click the **'X' icon** in the top-right corner to close any modal without saving.
+
+---
+
+## 💻 Setup Instructions
+
+To get this project running locally, follow these steps:
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/KhodaniD/KHOMAI25088_PTO2502_GroupA_KhodaniMailula_JSLPP
+    ```
+
+2.  **Navigate to the project directory:**
+    ```bash
+    cd KHOMAI25088_PTO2502_GroupA_KhodaniMailula_JSLPP
+    ```
+
+3.  **Open the file:**
+    Locate and double-click `index.html` in the root directory to open the application in your browser.
+
+---
+
+## 🖥️ Working Usage Examples
+
+### Desktop View
+* Open `index.html` in a desktop browser. The **sidebar** and Kanban columns will be fully visible.
+* Click **"+ Add New Task"** to create a new task.
+* Click on any existing task card to **edit or delete** it.
+* Use the **theme toggle** in the sidebar to switch between light and dark mode.
+* Resize your browser window to observe how the columns and modal responsively adjust their layout.
+
+### Mobile View
+* Open `index.html` on a mobile device or use your browser's developer tools for mobile emulation.
+* The desktop sidebar will be hidden. Tap the **Kanban logo in the header** to toggle the mobile menu.
+* The Kanban columns will stack vertically, making them easily scrollable.
+* The modals for adding and editing tasks are fully responsive and touch-friendly.
 
 This Kanban board now serves as a robust example of dynamic UI rendering, interactive task management (Create, Read, Update, Delete), and responsive design, providing a complete and intuitive user experience.
 
