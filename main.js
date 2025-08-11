@@ -101,3 +101,16 @@ function setupGlobalEventListeners() {
   });
 }
 
+/**
+ * Initializes the application.
+ * @returns {void}
+ */
+async function init() {
+  setupGlobalEventListeners();
+  setupModalEventListeners();
+  loadInitialTheme();
+  await initializeTasks();
+}
+
+// Start the application once the DOM is fully loaded.
+document.addEventListener('DOMContentLoaded', init);
