@@ -87,3 +87,27 @@ function handleFormSubmit(event) {
   closeModal();
 }
 
+/**
+ * Handles the click on the "Delete Task" button in the edit modal.
+ */
+function handleDeleteClick() {
+  if (!currentTaskId) return;
+  // This function now simply shows the custom delete modal
+  deleteModalBackdrop.classList.remove('hidden');
+}
+
+/**
+ * Opens the main task modal.
+ * @param {object} [task=null] - The task object to be edited. If null, a new task form is shown.
+ */
+export function openModal(task = null) {
+  populateModal(task);
+  modalBackdrop.classList.remove('hidden');
+}
+
+/**
+ * Closes the main task modal.
+ */
+export function closeModal() {
+  modalBackdrop.classList.add('hidden');
+}
