@@ -6,7 +6,7 @@
 import { saveTasksToStorage, loadTasksFromStorage } from './storage.js';
 import { openModal } from './modal.js';
 
-const API_URL = 'https://jsl-kanban-api.vercel.app/api/tasks';
+const API_URL = 'https://jsl-kanban-api.vercel.app/';
 let state = [];
 
 const loadingStateElement = document.getElementById('loading-state');
