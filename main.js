@@ -114,3 +114,4 @@ async function init() {
 
 // Start the application once the DOM is fully loaded.
 document.addEventListener('DOMContentLoaded', init);
+
