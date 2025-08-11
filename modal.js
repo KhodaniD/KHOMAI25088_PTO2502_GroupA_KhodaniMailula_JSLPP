@@ -58,3 +58,32 @@ function populateModal(task) {
   }
 }
 
+/**
+ * Handles the form submission for creating or editing a task.
+ * @param {Event} event - The form submit event.
+ */
+function handleFormSubmit(event) {
+  event.preventDefault();
+  const title = titleInput.value.trim();
+
+  if (!title) {
+    toggleTitleValidation(true);
+    return;
+  }
+
+  const taskData = {
+    title,
+    description: document.getElementById('modal-task-description').value.trim(),
+    status: document.getElementById('modal-task-status').value,
+    priority: document.getElementById('modal-task-priority').value,
+  };
+
+  if (currentTaskId) {
+    updateTask(currentTaskId, taskData);
+  } else {
+    addNewTask(taskData);
+  }
+
+  closeModal();
+}
+
