@@ -133,3 +133,23 @@ export function setupModalEventListeners() {
       closeModal();
     }
   });
+
+  // Event listeners for the custom delete modal, set up once
+  confirmDeleteBtn.addEventListener('click', () => {
+    if (currentTaskId) {
+      deleteTask(currentTaskId);
+      deleteModalBackdrop.classList.add('hidden');
+      closeModal();
+    }
+  });
+
+  cancelDeleteBtn.addEventListener('click', () => {
+    deleteModalBackdrop.classList.add('hidden');
+  });
+
+  deleteModalBackdrop.addEventListener('click', (event) => {
+    if (event.target === deleteModalBackdrop) {
+      deleteModalBackdrop.classList.add('hidden');
+    }
+  });
+}
