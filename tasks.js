@@ -91,3 +91,35 @@ function updateTaskCountDisplays() {
   }
 }
 
+/**
+ * Renders all tasks to the Kanban board.
+ */
+export function renderTasks() {
+  const tasksByStatus = { todo: [], doing: [], done: [] };
+  state.forEach(task => {
+    if (tasksByStatus[task.status]) {
+      tasksByStatus[task.status].push(task);
+    }
+  });
+
+  columnDivs.forEach(column => {
+    const status = column.dataset.status;
+    const container = column.querySelector('.tasks-container');
+    if (container) {
+      container.innerHTML = '';
+      tasksByStatus[status]
+        .sort(compareTasksByPriority)
+        .forEach(task => container.appendChild(createTaskElement(task)));
+    }
+  });
+
+  updateTaskCountDisplays();
+  
+  if (state.length === 0) {
+    setBoardView('empty');
+  } else {
+    setBoardView('content');
+  }
+}
+
+
