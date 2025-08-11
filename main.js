@@ -67,3 +67,37 @@ function toggleMobileMenu() {
   mobileMenuModal.classList.toggle('hidden');
 }
 
+/**
+ * Sets up all the global event listeners for the application.
+ * @returns {void}
+ */
+function setupGlobalEventListeners() {
+  // Sidebar toggling
+  document.getElementById('hide-sidebar-btn').addEventListener('click', toggleSidebar);
+  showSidebarBtn.addEventListener('click', toggleSidebar);
+
+  // Theme toggling
+  themeToggle.addEventListener('change', () => applyTheme(themeToggle.checked ? 'dark' : 'light'));
+  mobileThemeToggle.addEventListener('change', () => applyTheme(mobileThemeToggle.checked ? 'dark' : 'light'));
+
+  // Mobile menu
+  mobileMenuTrigger.addEventListener('click', (event) => {
+    event.stopPropagation(); // Prevents the document listener from firing immediately
+    toggleMobileMenu();
+  });
+  document.getElementById('close-mobile-menu-btn').addEventListener('click', toggleMobileMenu);
+
+  // "Add New Task" buttons
+  document.getElementById('add-new-task-btn').addEventListener('click', () => openModal());
+  document.getElementById('add-new-task-from-empty-btn').addEventListener('click', () => openModal());
+
+  // Close mobile menu when clicking outside of it
+  document.addEventListener('click', (event) => {
+    if (!mobileMenuModal.classList.contains('hidden') && 
+        !mobileMenuModal.contains(event.target) &&
+        !mobileMenuTrigger.contains(event.target)) {
+      toggleMobileMenu();
+    }
+  });
+}
+
