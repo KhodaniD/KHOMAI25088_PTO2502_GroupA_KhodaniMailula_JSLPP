@@ -32,3 +32,14 @@ export function loadTasksFromStorage() {
     return [];
   }
 }
+
+/**
+ * Clears all tasks from local storage.
+ */
+export function clearTasksFromStorage() {
+  try {
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
+  } catch (error) {
+    console.error("Error clearing local storage:", error);
+  }
+}
