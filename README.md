@@ -45,13 +45,13 @@ This is a fully functional, responsive Kanban board web application designed to 
 
 ## Presentation
 
-* **Live Presentation:** [Add your presentation link here]
+* **Presentation:** [Add your presentation link here]
 
 ---
 
 ## Live Demo
 
-* **Netlify Link:** [Add your Netlify link here]
+* **Netlify Link:**: https://khodanimailulajslpp.netlify.app/
 
 ---
 
