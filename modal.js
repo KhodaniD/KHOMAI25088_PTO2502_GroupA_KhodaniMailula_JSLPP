@@ -111,3 +111,25 @@ export function openModal(task = null) {
 export function closeModal() {
   modalBackdrop.classList.add('hidden');
 }
+
+/**
+ * Sets up all event listeners for the modals.
+ */
+export function setupModalEventListeners() {
+  taskForm.addEventListener('submit', handleFormSubmit);
+  
+  // The event listener for the delete button is now set up once here
+  deleteButton.addEventListener('click', handleDeleteClick);
+
+  titleInput.addEventListener('input', () => {
+    if (titleInput.value.trim()) {
+      toggleTitleValidation(false);
+    }
+  });
+
+  document.getElementById('close-modal-btn').addEventListener('click', closeModal);
+  modalBackdrop.addEventListener('click', (event) => {
+    if (event.target === modalBackdrop) {
+      closeModal();
+    }
+  });
