@@ -13,7 +13,7 @@ const showSidebarBtn = document.getElementById('show-sidebar-btn');
 const themeToggle = document.getElementById('theme-toggle');
 const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
 const mobileMenuModal = document.getElementById('mobile-menu-modal');
-const mobileMenuTrigger = document.getElementById('mobile-menu-trigger'); 
+const mobileMenuTrigger = document.getElementById('mobile-menu-trigger');
 const mainLogo = document.querySelector('.main-logo');
 
 /**
@@ -31,10 +31,8 @@ function applyTheme(theme) {
   // Swaps the logo source based on the current theme
   if (mainLogo) {
     if (isDark) {
-      // Use logo-dark.svg for dark mode
       mainLogo.src = './assets/logo-dark.svg';
     } else {
-      // Use logo-light.svg for light mode 
       mainLogo.src = './assets/logo-light.svg';
     }
   }
@@ -68,6 +66,23 @@ function toggleMobileMenu() {
 }
 
 /**
+ * Handles window resize events to ensure the sidebar state is correct on desktop.
+ * @returns {void}
+ */
+function handleResize() {
+  const isDesktop = window.innerWidth > 768;
+  if (isDesktop) {
+    mobileMenuModal.classList.add('hidden');
+    sidebar.classList.remove('hidden');
+    mainContent.classList.remove('sidebar-hidden');
+  } else {
+    // On mobile, ensure the main sidebar is hidden by default
+    sidebar.classList.add('hidden');
+    mainContent.classList.remove('sidebar-hidden');
+  }
+}
+
+/**
  * Sets up all the global event listeners for the application.
  * @returns {void}
  */
@@ -82,7 +97,7 @@ function setupGlobalEventListeners() {
 
   // Mobile menu
   mobileMenuTrigger.addEventListener('click', (event) => {
-    event.stopPropagation(); // Prevents the document listener from firing immediately
+    event.stopPropagation();
     toggleMobileMenu();
   });
   document.getElementById('close-mobile-menu-btn').addEventListener('click', toggleMobileMenu);
@@ -99,6 +114,9 @@ function setupGlobalEventListeners() {
       toggleMobileMenu();
     }
   });
+
+  // Handle window resizing
+  window.addEventListener('resize', handleResize);
 }
 
 /**
@@ -109,9 +127,18 @@ async function init() {
   setupGlobalEventListeners();
   setupModalEventListeners();
   loadInitialTheme();
+
+  // Set the correct sidebar state on initial page load
+  const isDesktop = window.innerWidth > 768;
+  if (isDesktop) {
+    sidebar.classList.remove('hidden');
+    mainContent.classList.remove('sidebar-hidden');
+  } else {
+    sidebar.classList.add('hidden');
+    mainContent.classList.remove('sidebar-hidden');
+  }
+  
   await initializeTasks();
 }
 
-// Start the application once the DOM is fully loaded.
 document.addEventListener('DOMContentLoaded', init);
-

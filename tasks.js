@@ -9,24 +9,31 @@ import { openModal } from './modal.js';
 const API_URL = 'https://jsl-kanban-api.vercel.app/';
 let state = [];
 
-const loadingStateElement = document.getElementById('loading-state');
+const loadingOverlay = document.getElementById('loading-overlay');
 const errorStateElement = document.getElementById('error-state');
 const noTasksStateElement = document.getElementById('no-tasks-state');
 const kanbanBoardElement = document.getElementById('kanban-board');
 const columnDivs = document.querySelectorAll('.column-div');
 
 /**
- * Sets the current view of the Kanban board (loading, error, empty, or content).
+ * Sets the current view of the Kanban board.
  * @param {'loading' | 'error' | 'empty' | 'content'} view - The view to display.
  */
 function setBoardView(view) {
-  const views = ['loading', 'error', 'empty', 'content'];
-  views.forEach(v => {
-    const element = document.getElementById(`${v}-state`) || kanbanBoardElement;
-    if (element) {
-      element.classList.toggle('hidden', view !== v);
+  // Use a map to handle all possible view states
+  const elements = {
+    loading: loadingOverlay,
+    error: errorStateElement,
+    empty: noTasksStateElement,
+    content: kanbanBoardElement
+  };
+
+  // Toggle the 'hidden' class on each element based on the current view
+  for (const key in elements) {
+    if (elements[key]) {
+      elements[key].classList.toggle('hidden', key !== view);
     }
-  });
+  }
 }
 
 /**
@@ -40,6 +47,7 @@ async function fetchTasksFromAPI() {
     return await response.json();
   } catch (error) {
     console.error("Failed to fetch tasks from API:", error);
+    // Return an empty array to handle the error gracefully
     return [];
   }
 }
@@ -146,6 +154,7 @@ export function updateTask(id, updates) {
     saveTasksToStorage(state);
     renderTasks();
   }
+  setBoardView('content');
 }
 
 /**
@@ -162,22 +171,25 @@ export function deleteTask(id) {
  * Initializes the application by loading tasks from local storage or the API.
  */
 export async function initializeTasks() {
+  // Show the loading overlay
   setBoardView('loading');
+  
+  // A small delay to guarantee the loading spinner is visible for a moment
+  await new Promise(resolve => setTimeout(resolve, 300));
+  
   let tasks = loadTasksFromStorage();
 
   if (tasks.length === 0) {
     tasks = await fetchTasksFromAPI();
   }
-
-  if (tasks.length === 0) {
-    setBoardView('empty');
-  } else {
-    state = tasks.map(task => ({
-      ...task,
-      priority: task.priority ? task.priority.toLowerCase() : 'medium'
-    }));
-    saveTasksToStorage(state);
-    renderTasks();
-  }
+  
+  // Update the state and save to local storage
+  state = tasks.map(task => ({
+    ...task,
+    priority: task.priority ? task.priority.toLowerCase() : 'medium'
+  }));
+  saveTasksToStorage(state);
+  
+  // Hide the loading overlay and render the tasks
+  renderTasks();
 }
-
