@@ -17,7 +17,7 @@ This project is a fully functional, responsive Kanban board web application desi
 ## 🚀 Live Demo & Presentation
 
 * **Live Demo:** https://khodanimailulajslpp.netlify.app/
-* **Presentation:** [Add your presentation link here]
+* **Presentation:** https://www.veed.io/view/d016bce6-f150-4c6a-abe7-e6fe835d4922?panel=share
 
 ---
 
